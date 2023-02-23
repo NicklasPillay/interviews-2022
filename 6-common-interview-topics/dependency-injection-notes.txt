@@ -1,0 +1,47 @@
+Eg.
+Class uses other classes
+
+What does it mean to inject?
+The dependency is pushed into the class from another
+Essential means don't instantiate an object
+Take it as a constructor parameter
+
+Why should we inject?
+We program to build walls
+When you get to a door
+Rather that building a new door, just take a pre-made door
+
+De-couples your classes contruction from construction of it's dependencies
+
+
+Dependency Inversion Principle
+Code should depend on abstractions and not concretions
+Deocuple implementations from each other
+
+Easier to modify, more modular and easier to re-use
+Mocking 
+
+
+eg. Okay so every class now uses D.I
+How do you serve that?
+Well you can use a Dependency Injection Container.
+
+The container is a Map of all the dependencies that your class needs
+With the logic to create those if they haven't been created yet.
+
+So insteading of constructing dependencies yourself, you ask the container for them.
+
+
+Life cycles of dependencies
+
+- Singleton
+Created only for the first request. 
+If a particular instance is specified at registration time, this instance will be provided to all consumers of the registration type.
+
+- Scoped
+Created once per scope; eg web request or any unit of work
+
+- Transient
+Created every time they are requested
+
+// https://www.youtube.com/watch?v=IKD2-MAkXyQ&t=6s&ab_channel=AnthonyFerrara

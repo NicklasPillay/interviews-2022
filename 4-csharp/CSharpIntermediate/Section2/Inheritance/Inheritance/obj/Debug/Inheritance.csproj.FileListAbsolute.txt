@@ -1,0 +1,13 @@
+C:\Projects\CSharpIntermediate\Section2\Inheritance\Inheritance\bin\Debug\Inheritance.exe.config
+C:\Projects\CSharpIntermediate\Section2\Inheritance\Inheritance\bin\Debug\Inheritance.exe
+C:\Projects\CSharpIntermediate\Section2\Inheritance\Inheritance\bin\Debug\Inheritance.pdb
+C:\Projects\CSharpIntermediate\Section2\Inheritance\Inheritance\obj\Debug\Inheritance.csprojResolveAssemblyReference.cache
+C:\Projects\CSharpIntermediate\Section2\Inheritance\Inheritance\obj\Debug\Inheritance.exe
+C:\Projects\CSharpIntermediate\Section2\Inheritance\Inheritance\obj\Debug\Inheritance.pdb
+C:\Users\NicklasP\Desktop\Github\interview-prep\4-csharp\CSharpIntermediate\Section2\Inheritance\Inheritance\bin\Debug\Inheritance.exe.config
+C:\Users\NicklasP\Desktop\Github\interview-prep\4-csharp\CSharpIntermediate\Section2\Inheritance\Inheritance\bin\Debug\Inheritance.exe
+C:\Users\NicklasP\Desktop\Github\interview-prep\4-csharp\CSharpIntermediate\Section2\Inheritance\Inheritance\bin\Debug\Inheritance.pdb
+C:\Users\NicklasP\Desktop\Github\interview-prep\4-csharp\CSharpIntermediate\Section2\Inheritance\Inheritance\obj\Debug\Inheritance.csprojAssemblyReference.cache
+C:\Users\NicklasP\Desktop\Github\interview-prep\4-csharp\CSharpIntermediate\Section2\Inheritance\Inheritance\obj\Debug\Inheritance.csproj.CoreCompileInputs.cache
+C:\Users\NicklasP\Desktop\Github\interview-prep\4-csharp\CSharpIntermediate\Section2\Inheritance\Inheritance\obj\Debug\Inheritance.exe
+C:\Users\NicklasP\Desktop\Github\interview-prep\4-csharp\CSharpIntermediate\Section2\Inheritance\Inheritance\obj\Debug\Inheritance.pdb

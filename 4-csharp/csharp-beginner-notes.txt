@@ -1,0 +1,51 @@
+C# vs .NET
+Language for developing various applications
+
+vs Framework
+Can be used by other languages like F#
+Provides scaffolding for development
+- Contains CLR (Common Language Runtime) - which manages the execution of .net programs
+- Class library 
+
+CLR(Common Language Runtime):
+- When you compile C# code, you get Intermediate language code (IL code)
+- This IL code is understandable by the machine - this is processor/architecture/OS specific
+- CLR compiles IL code to Native code for the target architecture type.
+
+- The process of taking code from IL to Native is called Just-in-time compilation (JIT)
+
+
+Namespace is a container for related classes
+Assembly (DLL or exe) is container for related namespaces.
+- Generally speaking .exe files are just for execution, as opposed to .dll, which
+is re-used across different programs (eg. login or logger module)
+That DLL can be built and targeted for testing/execution.
+
+
+Overflowing (implicit conversion)
+byte number = 255
+number = number + 1 // 0
+
+Increasing the data type and flowing into the next
+- can use "checked" key word, or just handle via exceptions
+
+
+System.IO
+- Working with files and directories, creating, deleting, moving, check they exist, etc
+File (static) vs FileInfo (instance)
+Directory(static), DirectoryInfo (instance)
+Path (static) - get name, extensions, etc
+
+If you are working with directories or files, you can use File methods statically.
+If you are working with the same directory or file, multiple times over, you can create 
+an instance for that.
+The value there is the underlying security check done by .NET as well as the 
+cached value of the resource.
+The down side is that it does not represent the current version of the file, only up
+to the point of instance creation, a refresh is required.
+
+
+Debugging
+- Breakpoints
+- Autos, Locals and Watcher
+- Stack trace

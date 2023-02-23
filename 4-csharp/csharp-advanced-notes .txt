@@ -1,0 +1,103 @@
+Delegates
+Pointers/references to method/group on methods
+The reason we use this is best described in a framework, where we allow extensibility from users.
+
+eg. Photo Filters.
+You can have 3 default filters to use.
+If there's a need for a 4th, let the user extend upon this on their own in their main()
+
+eg.
+public delegate void PhotoFilterHandler(Photo myPhoto);
+
+public void main() {
+	PhotoFilterHandler handler = new PhotoFilterHandler(somePhoto);
+	handler += ApplyBrightness();
+	handler += ApplyContrast();
+}
+
+Delegates in .NET
+Action<int>  // input only, no out reference
+Funct<int, int> // has input and output params
+
+
+Lambda Expressions
+- Creats anonymous function, and commonly represented as an expression to work on datasets
+- No access modifier
+- No name (anonymous)
+- No return
+- Convenience
+- assign to Function or Action delegate
+
+Read as: N goes to n*factor
+
+Func<int, int> multiplier = n => n*factor;
+
+Used a lot as filters
+
+eg. var cheapBook = books.FindAll(book => book.Price < 10)
+
+
+Events and Delegates
+Events essentially point to something happening (like an action, eg. click) which can notify other aspects of the system.
+Events can publish notifications
+And other components can subscribe to these, to determine whether or not to pick up work.
+
+eg. Video encoding, once done, send an email.
+encoder can send out a notification, and emailer will subscribe to that topic. and perform and action if needed
+
+There's an agreement between the publisher and subscriber...This is a delegate
+So a specific method which executes when an event is raised (This delegate determines the signature of the event handler in the Subscriber)
+
+Makes applications more extensible via modularity.
+
+
+Extension methods
+- staticly types
+- custom usage ON TOP, of existing existing functionality
+- eg. used to apply decorators on strings
+
+
+LINQ
+- Native query in C# 
+- (Language Integrated Query)
+- Can query objects in memory like collections
+- Can query Databases
+- Can query XML
+
+- Bunch of extension methods which can help filter any of the above.
+eg. Books.Where()
+Books.Single()
+Books.First()
+
+
+Asynchronous Programming
+Async vs Sync
+
+Sync model:
+Program executed line by line.
+When a function is called, program execution has to wait until the function returns
+
+Async Model:
+Program execution continues to next line without waiting for function to complete/return.
+We provide a callback on the function - 
+i.e program goes to line 3, then 4, and once line 2 with the method is done, execution pointer moves back there (Ln 2), Thereafter to ln5
+No block.
+
+Improves responsiveness of applications
+
+When to use
+- Whenever we have blocking tasks.
+- So accessing databases, parsing large files, images
+
+How do we use async?
+Since .NET 4.5 (Task based Aync/Await keywords)
+
+- All methods should decorated with async keyword in signature
+- They will return a Task, for voids
+- Or return a Task<T>, for generics like strings.
+- Convention to end with Async, so DownloadAsync()
+- In the actual blocking task, use the await keyword in front. and Ensure you use the Async() method provided by .NET (as of 4.5 they will be a sync and async version of these)
+- await keyword actually means go ahead and do other stuff
+- returns control back to the caller.
+- does not block the thread on that line
+- Once completed, the runtime will be aware of this, and completes rest of that method.

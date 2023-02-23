@@ -1,0 +1,349 @@
+Encapulsation
+Class contains fields, functions/methods about a particular model/thing
+It also can describe behaviours like walk() or talk()
+
+Object is an instant of a class
+
+fields of a class are referred to members of that class
+
+
+Why use static members?
+To represent concepts that are singleton (one in memory)
+eg. DateTime.Now
+
+Static members are accessible from the class, and not the object.
+i.e Static vs instance
+so eg. Console.WriteLine() or Person.Greet()
+
+
+Object constructor/initializers
+When an object is created, it gets default values from a constructor
+
+
+Access modifiers
+Control access to class and members
+Create safety in our applications
+Beginning on OOP - This in Encapsulation
+
+Fields on a class/object are generally private.
+You can't access those values externally via dot notation as an example.
+We want to hide implementation details (fields) from the outside
+
+We can use getter and setters as they can be public.
+Setter and Getter allows logic before updating fields.
+Where as direct updates to fields are merely storage mechanisms in memory
+
+Each class should be responsible for a single particular task.
+They shouldn't know everything about other classes, nor should they be god objects.
+But they(classes) should be able to interact with other classes to complete work.
+
+
+Properties
+Easier way to implement getters and setters
+public class Person {
+	private DateTime _birthDate;
+	
+	public DateTime Birthdate {
+		get { return _birthDate; }
+		set { _birthDate = value; }
+	}
+}
+
+
+Inheritance
+Represents "is a" relationships.
+Square, is a Shape.
+Mazda, is a Car.
+
+Or Parent-child class relationships
+Where the children can inherit/recieve the functionality of the parent class
+
+Write code once, and use it in multiple contexts
+It promotes re-usability of code and provides polymorphic behaviours
+
+
+Composition
+Represents "Has a" relationship.
+Relationship where one class can contain the other
+Car, has an engine.
+
+Code re-use
+More loosely coupled than Inheritance
+
+How to implement:
+Create classes, each modular and has just one job
+eg. Logging, Auth and Migration.
+
+Logging will be required for authenication and migration.
+You can pass an instance of that logging object when calling the other classes - their
+constructors will assign that as an implementation detail field.
+eg. _logger.
+And then that can be used in methods like Migrate or Login
+as _logger.Log("Failed to log in");
+
+
+Why Composition over Inheritance
+Imagine there 2 classes. Dog and Human
+They can inherit from an Animal class which has:
+- Age
+- Eat()
+- Sleep()
+
+If we extend that to include Walk()
+
+And then if we add another class, Fish.
+- Walk does not work for a Fish.
+Which means we need to break the parent Animal class and 
+affect the hierachy of inheritance.
+
+Composition allows for more loosely coupled modules.
+
+
+Encapsulation
+- think black box with just one button.
+- We want to design in that way.
+- Hide whatever internal implementation details there may be, and show minimal
+output to via a public interface of sorts (eg. our button)
+- We do this as our fields may have calculations like rate of pay, salary, etc
+
+Modifiers:
+- public - everywhere
+- private - access within class
+- protected - access to derived classes as well.
+- internal - if you need to keep content within specific domain/assembly
+- protected internal - content within specific domain/assembly, plus derived classes
+
+
+When using inheritance, parent class constructors are called first, then children.
+If the parent class uses an overloaded constructor, and the child class does not accept
+that parameter, this will fail.
+eg.
+
+Vehicle(regNumber) {
+	_regNumber = regNumber
+}
+
+Car() {
+	// empty 
+}
+
+Definition as follows
+Car: Vehicle
+
+This will fail, as Vehicle (parent) will try to construct an object first.
+The constructor in Vehicle needs a regNumber.
+
+So you can update Car as follows:
+
+Car(regNumber): 
+	base(regNumber) {
+	
+	// do stuff
+}
+
+Base is a keyword that will call the constructor of the parent
+
+
+Upcasting, Downcasting, as and is
+
+Given the following implementation details.
+
+Circle: Shape
+
+Circle circle = new Circle();
+Shape shape = circle;
+
+// This will work as circle can be assigned to type of it's parent
+- This is upcasting, casting to it's parent type implicitly/automatically.
+
+Downcasting - a good example would be Windows Applications on button clicks.
+Parameter to the onClicks are usually (object sender, RoutedEvent e)
+
+sender. // Dot notation gives you no properties on the button, even though 
+we know the sender is a button.
+
+Here we are downcast to get access to all button functionality
+eg. 
+var button = (Button) sender; // explicit casting
+button. // all methods and props
+
+
+If you are not sure on the type, you can use the as keyword.
+var button = sender as Button; // returns null if not a Button
+if (button != null) {
+ // do stuff
+}
+
+Fun fact:
+Object class is the base/parent class of all object types.
+So...
+Circle circle = new Circle();
+Shape sharp = circle;
+Object shape = circle // will work!
+
+
+Boxing vs Unboxing.
+Value types stored on the Stack
+Ref types on Heap.
+
+Boxing is the process of converting a value type instance to an object reference
+int number = 10
+object obj = number
+
+Unboxing is taking a ref type and converting to value type.
+
+
+Both Boxing and Unboxing have a performance hit.
+As they create new objects 
+
+
+Polymorphism
+Ability to have many forms
+
+Method Overriding
+Modifying the implementation of an inherited method
+
+public class Shape {
+	public virtual void Draw() { // Simply decorate parent class implementation with virtual keyword
+		// Default implementation
+	}
+}
+
+public class Circle : Shape {
+	public override void Draw() { // And if required, you can add in "override" keyword and change impl.
+		// New implementation
+	}
+}
+
+Method overloading
+Same function/method, with a different signature (different number of parameters)
+
+
+Abstract modifier
+- Indicates class or member is missing implementation
+
+public abstract class Shape {
+	public abstract void Draw(); // No body, no implementation, we can't draw a shape 
+	- we must know it's type before we can implement a draw function
+}
+
+public class Circle : Shape {
+	public override void Draw() { 
+		// Specific Implementation of Draw for this Shape type (Circle)
+	}
+}
+
+Abstract classes are inherently virtual - they always get another implementation
+in their children objects
+
+Rules for abstract classes 
+- They have no implementation in base class
+- If a member has been declared as abstract, so too the containing class. See Shape class above
+- In a derived class, all members declared as abstract in base class must be implemented
+- Abstract classes cannot be instantiated
+
+Why use abstract classes?
+Common behaviour helps team follow a design pattern - SOLI(D)
+eg. Create abstract definition of Draw()
+
+
+Sealed Modifier
+- This is the opposite to abstract classes
+- Prevents derivation/extending of classes or override of methods
+- Applies to methods that are overriding a virtual method from your base class
+
+
+Interfaces
+- Construct which is similar to a class (in terms of syntax)
+- No implementation - just a declaration - no body, no curly braces
+- These are declarations of capabilities. Can be a methods, properties, events.
+- NOT fields or auto-implemented properties (since these are implementation details)
+- No access modifiers, public/private
+
+eg.
+
+public interface IShippingCalculator {
+	int Calculate();
+}
+
+public class ShippingCalculator : IShippingCalculator {
+	public int Calculate(){ // Interface methods must be public - we want everyone to interact via this
+		// some calc
+	}
+}
+
+
+Good analogy is think of a restuarant and a Chef
+They need a Chef, but it does not specifically need to be a particular person. eg John
+That Person just needs to be able to cook.
+
+So the interface can represented as:
+
+public interface IGetChef {
+	bool CanCook();
+}
+
+
+Why do we need interfaces?
+- Helps build more loosely coupled applications
+- So when one class changes, minimizes the impact of the down stream classes
+- Clear indication of related functionality
+
+- Improve Testability:
+If a particular class has other dependencies in terms of concrete classes, it 
+does not really conform to a "Unit" test, as we are doing more, and providing more 
+room for failure, to really isolate a piece of code we can use an interface to decouple that
+
+- Improve Extensibility:
+If we had a method to log out details.
+That could be using a console window at the moment.
+That could change to use a File stream to write to a file.
+Rather that changing the implementation details directly, we can add an ILogger interface
+
+That interface can tell us we need to Log things, like so:
+
+public interface Ilogger {
+	void LogError (string message);
+	void LogInfo (string message);
+}
+
+Then in it's usage, follow something like this:
+
+public class FileLogger : ILogger {
+	private readonly string _path;
+	
+	public FileLogger(string path){
+		_path = path;
+	}
+	
+	// then forced to implement our 2 methods from interface
+	
+	public void LogError(string message) {
+		Log(message, "Error")
+	}
+	
+	public void LogInfo(string message) {
+		Log(message, "Info")
+	}
+	
+	public Log(string message, string logType) {
+		using (var streamWriter = new StreamWriter(_path, true)){
+			streamWriter.WriteToFile(logType + ": " + message);
+		}
+	}
+}
+
+Essentially what this is saying, is we can change, or extend the behaviour of a class
+by simply injecting new concrete instances (new class we made)
+to the constructor call to the object in Main
+
+eg.
+// FileLogger() is new previously was ConsoleLogger()
+static void Main(string[] args) {
+	var dbMigrator = new DbMigrator(new FileLogger("C:\\Projects\\logFile.txt"));
+	dbMigrator.Migrate(); // 0 updates done to Migrate - but we extended via ILogger
+}
+
+This is Open/Close principal, software entities should be opened for extension but 
+closed for modifications
+

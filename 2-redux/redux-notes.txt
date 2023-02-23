@@ -1,0 +1,148 @@
+Redux
+
+Library for state management for javascript applications
+Facebook came out with Flux first
+Similarly there's Redux., MobX
+
+State management is important because it:
+- centralizes application state (rather than having objects all over the place)
+- This is done by using the "store" - essentially a DB of sorts for front end
+- It also makes data flow transparent and predictable.
+- Can easily see what changes the state, when, and details
+- Implement undo/redo features
+- Preserves page state
+- Based on functional programming
+
+Webpack
+bundler for web packages
+
+
+Javascript & Functional programming
+- Just another paradigm that uses smaller more concise functions to build up larger
+more complex ones
+- More concise, easier to debug, scalable
+- Higher functions means functions that work on functions (as a param or returns another function)
+- keep in mind that in javascript functions are first class citizens
+meaning a function can be stored as a variable.
+
+Function composition is the process of using smaller functions to get a final result
+ Building complex functions
+eg. trim() and lower() together on 1 line.
+
+Composing and Piping
+Pipe - Easier way to define all functions you want run
+Transform - simple function which applies all piped methods on a object/variable/funct
+
+Pure functions
+- Consistent output logic, and can't mutate inputs/objects
+- eg DoubleMe(int number) { return number * 2} vs
+MultiplyMe(int number) { return number * Math.Random()}
+
+Javacsript is not a pure functional language
+We can mutate objects and arrays
+
+Other languages return a new instance of that object.
+eg. let name = "nick"
+let newName = name.toUpperCase()
+
+Javacsript was not designed to be a pure functional language
+It's a multi-paradigm language. Meaning it could be OOP, functional, etc.
+Depends on user's implementation
+
+const prevents re-assignment, but you can update object values
+
+Why immutability.
+- Predictable
+- Faster change detection (State management)
+Since it points to memory references as comparisions as opposes to each object and their property values
+- Concurrency - If we know an object is immutable, we can safely run concurrently
+
+Fundamental principle of redux, do not mutate objects
+
+shallow copy vs deep copy
+you affect original reference via mem pointer unfortunately, so need to deep copy
+and then override individual property
+
+
+Redux Fundamentals
+Store to manage state
+User performs an action
+The Reducer takes that action and creates a copy of the store via a spread operator
+Updates the store accordingly - with details of action and store
+"Slice" - is just groups within the store with sub-entries
+
+Summary:
+We access states via getState()
+We dispatch actions (which calls the reducer) to update states
+Subscribers listen to those updates and reflect across the site
+
+Redux devtools
+- Track overall state
+- Track actions
+- Tracing code calls
+
+
+Redux clean code:
+- Ducks (redux) pattern
+Intentionally place your folders and class to provide SOC per feature
+- 1 file should contain Actions, Action creator and reducer
+- export default your reducer
+- export individual action creators
+
+
+Middleware
+- Piece of code that gets executed after an action is dispatched and before it
+reaches the route reducer (the one that triggers updates to subscribers)
+- eg of Middleware sets:
+
+
+Unit Tests (Bottom layer of pyramid)
+- We want them fast and to be run often
+- Test without external resources (databases, services)
+- Test that a piece of code does what it's supposed to do
+
+Integ tests (Middle layer of pyramid)
+- Test with external dependencies
+- Help gain confidence with application
+- Slower
+
+End-to-End (Top and smallest piece of pyramid)
+- From backend to UI
+- Be selective
+- Most likely manual
+
+
+Mocking
+- Won't make an actual http request for backend/other dependencies
+- creates fakeObjects of instances of Mock(dependencies)
+Anytime you get a request to xx dependency respond with this fake object
+
+eg.
+Jira payloads with creating 
+User clicks on button on site and that sends over the following to the server:
+const bug = { description: "This Bugzo is badzo" }
+
+Server will send back:
+const savedBug = { id: gtp-5908, description: "This Bugzo is badzo" }
+
+
+As a result you can see the mock object to react to the "Create button" to
+send back the following savedBug object.
+
+// responseCode and object
+fakeObj.OnPost('/createBug').reply(200, savedBug)
+
+
+Writing clean tests
+Triple A
+
+- Arrange (Initializations)
+- Act (Perform actions)
+- Assert (Compare actual responses vs expections)
+
+Use beforeEach where possible
+As well as afterEach
+Name tests well (should do xx if xx)
+
+check coverage report (usually 80% is an acceptable number)
+

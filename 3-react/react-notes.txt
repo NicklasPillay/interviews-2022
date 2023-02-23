@@ -1,0 +1,82 @@
+React
+
+- Javascript library for fast and interactive UI
+- Library not a Framework (like Angular)
+- Created by developer from Facebook in 2011
+- Components (piece of UI)
+- Each app has at least one component (called the root component)
+- We build more complex UIs by adding multiple components together
+
+DOM background:
+Document object Model
+Is an Application Progamming Interface
+The DOM is a W3C (World Wide Web Consortium) standard
+Tree structure - each node is an object representing a part of the document
+
+- Component usually implemented as a javscript class which has:
+	- State (some data we want to display within page)
+	- Render method (and this describes what the UI should look like - html/css)
+	Returns a React element
+	A plain js object which actually maps to a JS DOM element in memory.
+	It is not a real JS DOM element itself.
+
+React keeps a lightweight representation of the DOM in memory
+Which we refer to as the virtual DOM
+Unlike the browser and JS DOM, this virtual DOM is cheap to create
+
+When an action is complete, React will compare state inside Virtual DOM to DOM
+and update accordingly
+
+Unlike vanilla JS we no longer have to query or manipulate the DOM
+Or attach event handlers to DOM elements
+
+We simply change the state and React will update the DOM for to match the state for us
+
+That's why React is called React, when state changes, React reacts :D to update DOM
+
+
+Basic react app's dependencies
+- Live development server
+- Webpack for bundling
+- Babel for compiling the JS code
+- 0 to Minimal config required
+
+
+State
+State is a special property/object in React, stores any data that a specific component needs
+Expression is something that produces a value
+JSX expressions just return something that React can use - can be an object, value type, even an UI element eg. <h1>Hi</h1>
+
+JSX Elements will be rendered.
+We use render() and return that from the React side which will be translated to Javascript
+We can iterate over collection state properties with a map - eg for list items.
+eg. {this.state.tags.map((t) => (
+            <li key={t}>{t}</li>
+	))}
+	
+
+References to "this" keyword in javascript
+obj.method() ==> this have a reference to object (as this)
+function() ==> this is referring to the window object as this
+
+solution is to add a constructor and bind this
+Or just use arrow functions (they don't rebind the this reference, they inherit it)
+
+eg.
+handleIncrement = () => {
+	console.log("Increment", this)
+};
+
+Reminder to self
+Functions in JS are objects, so they have methods and properties
+ES6 Refresher is the best in the game:
+https://codewithmosh.com/courses/357787/lectures/5634615
+
+
+Updating state in React
+this.setState(count : 5) // must use this for React to update field
+
+It will go through the VDOM vs DOM updating mechanism
+
+
+

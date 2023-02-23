@@ -1,0 +1,20 @@
+Async
+
+- do not block the calling thread
+- returns a task
+- task are the cornerstone of async programming
+- task is not thread
+- task is a specific process/piece of work to do
+- Can check status of that task
+- Can get result
+- can schedule more work post completion with .ContinueWith()
+
+eg. ReadAllLinesAync
+
+
+Async and Await
+- makes asynchrounous programming easy
+- await will not block the CPU
+- will go do other stuff/tasks/work
+- once this task is completed, will continue doing work/tasks
+

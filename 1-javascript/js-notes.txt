@@ -1,0 +1,200 @@
+Javascript notes
+
+Langauge, can be used for front and back end
+Mostly for interactive webpages
+Originally created for browser use only
+Browsers have their own javascript engine built into them (FireFox: Spidermonkey, Chrome: V8)
+Some developer made something called Node, which has google's V8 engine built into it.
+So we can run JS code via node or browser
+
+These provide a runtime environment for javascript to run
+
+ECMA (organization which defines a standard on usage of javscript)
+
+It is a dynamic language
+Meaning type of variable will be determined and can change at runtime
+
+
+Values/Primitive types
+
+value types copied by their value
+Reference types - copied by their reference
+Object (items we instantiate)
+Arrays (Lists, Hashmaps, collections)
+Functions (Calling methods on an object, eg console.log())
+
+JS can store different types in an array
+
+default value is undefined (eg. if you don't in a parameter for surname)
+You'll get: Nicklas undefined
+
+
+Operators
+console.log(x++) vs  console.log(++x)
+
+Equality checks
+=== vs ==
+strict(type and value) vs loose(just value, will try and convert to match first type)
+
+
+Logical operators, which are not booleans
+
+Falsey values are:
+- undefined
+- null
+- 0
+- false
+- ''
+- NaN
+Anything that is not falsy is truthy
+
+
+Short-circuiting is the evaluation of an expression from left to right with || and && operators. 
+If the condition is met and the rest of the conditions won't affect the already evaluated result, 
+so the expression will short-circuit and return that result (value).
+
+false || true (returns true; and is truthy)
+false || "Mosh" (returns "Mosh"; and is falsey)
+false || 7 (returns 7; and is truthy)
+false || 1 || 7 (returns 1; and is truthy)
+
+Real world example:
+
+userColor = red
+defaultColor = blue
+colorToShow = userColor || defaultColor
+
+
+Factory vs constructor function definitions:
+
+Constructor function
+Uses keywords: this and new 
+Will be capitalized
+A constructor returns an instance of the class you call it on // similar to C#, Java, typical OOP 
+but in JS you don't really have classes - just the representation of one
+So you pass in data, assign to property, getters, setters, methods
+Requires new keyword
+Capitalize the Object/class name eg. Person
+
+A factory function can return anything (generally object)
+Will be in lowerCase
+Doesn't require new keyword
+People get confused with the this keyword
+Almost like, in place creation of object, and has functions defined directly on it
+Supposedly easier to deal with in terms of inheritance
+
+
+Object meta-data for notes
+Objects have members
+members can be properties or functions
+if they are functions, they are referred to as methods()
+Every object has a constructor property and that references the function that was used to create that object
+
+
+Iterating through objects (not collections):
+
+We can access the value via bracket notation on the object myObject[]
+To get all keys only, you can use built in Object.keys(xx)
+
+for (let key of Object.keys(circle))
+	console.log(key)
+	// returns: radius, color, etc
+
+
+Lastly you can check if property is a member of any object using:
+if ('propName' in objectName)
+	
+for (let entry of Object.entries(circle))
+	console.log(entry)
+	// returns: {radius: 2}, {color: blue}, etc
+	
+
+Copying objects (2 ways):
+- Object.assign // copies props and methods into another object
+- spread 
+eg const another = { ... circle } // copies the current obj
+
+
+Hide implementation details in objects
+- Use let for variables if you need to calc or store quickly
+- Use this. to expose as property from the object
+
+
+Best functions have no parameters
+
+
+Garbage collection
+- automatically - JS is a higher level language compared to C++ as an eg
+- no need to de-allocate memory
+- find variables and constants that are no longer used and the de-allocate it
+- no control on that
+
+
+Strings
+'' "" String literal
+vs
+`` template literal
+
+
+Sorting:
+.sort
+.reverse
+
+
+Elements of an array, and conditionally testing them:
+numbers = [-1, 2, 5, 7]
+
+numbers.every(function(value){
+	return value >= 0
+}) // returns boolean ==> ensure EVERY element is positve
+
+numbers.some(function(value){
+	return value >= 0
+}) // returns boolean ==> ensure at least one element is positve
+
+val filteredArr = numbers.filter(function(value){
+	return value >= 0
+}) // returns new array with elements matching criteria
+
+This can be re-written as:
+val filteredArr = numbers.filter(val => val >= 0)
+
+
+
+Map method:
+idNumbers = ['123', '6453', '16534'] // these are plain old strings
+Best we type safe them.
+So eg. 
+val person = Person(
+	idNumber: IdNumber, // we can cast this to type IdNumber rather than just a string
+	age: int,
+	name: string
+)
+
+val mappedArr = filteredArr.map(val => ({IdNumber(value)}) )
+
+// javascript uses this syntax on .map (n => ({ value:n })) for objects
+
+
+
+Functions
+Function declaration is a standard function creation (what we know)
+ie: function foo(){
+	// bar
+}
+
+You can express that function via a variable. By assignment, or function expression.
+const run = function foo(){
+	// bar
+}
+
+run() // will work, as it invokes the function.
+
+
+
+The difference between these two types is you can call a declaration function 
+before it is defined. The reason being, is that the JS engine will move all functions to
+the top of the file - via a mechanism called hoisting.
+
+Function expression must be defined, before run the variable.
+

@@ -1,0 +1,141 @@
+Language created by Microsoft to address some shortcomings in JS, based on top of Javscript.
+How is it different to Vanilla JS
+- Statically Typing (we know the types at compile time and it won't change - it's fix, or static)
+- Essentially Javascript with type checking
+- Code completion and refactorings, via IDEs (quicker than JS updates to various browsers)
+- Shorthand notations
+- Can be both front and back end (same like JS)
+- .ts file goes through a Compiler and gets .js file which is understandable by browser 
+(This process is transpilation)
+- Every .ts file can actually be an executable js file.
+
+
+Fundamentals
+- Typescript introduces more built-in types {Any, Enum, Tuples, etc}
+- Typescript can infer the type of a variable.
+- You can also specify like: let age: number = 30;
+- You can also use the :Any type
+However this goes against one of the best benefits of Typescript, which is type safety
+
+Strict mode
+Provides a range of type checking behaviours.
+These vary per versions of compilers you use.
+
+Tuple
+let user: [number, string] = [1, "Nick"];
+
+Enums
+Enum Sizes {
+	Small = s,
+	Medium = m,
+	Large = l
+}
+
+Function best pratices
+- annotate your params with types
+- annotate your methods with return types
+
+
+Narrowing
+Type checking and then performs certain actions
+eg.
+if(typeof document === "string") { }
+
+
+Advanced Types
+Union Type (|)
+
+PoundsToKg(weight: number | string) { 
+
+}
+
+PoundsToKg(10)
+PoundsToKg("10")
+
+
+Intersection Type
+Combination of 2 types 
+eg: (Draggable and Resize)
+Who would use that? 
+A Widget.
+
+
+Literal Type
+These define exact or specific values..
+
+type Metric = 'cm' | 'inch';
+
+
+Optional chaining:
+- Rather than having additional criteria checks, you can use the optional chaining mechanism
+customer?.birthday
+
+
+Nullish coalescing operator
+let speed: number | null = null;
+let ride = {
+	// speed may be null, else use 30
+	speed: speed ?? 30
+}
+
+
+Type Assertions
+Tells compiler we know more about this object than us, so show us methods/properties of this type
+Does not convert to that type.
+eg.
+let phone = document.getElementId("x") as HTMLInputElement; // can also be done as  <HTMLInputElement> document.getElementId("x")
+phone.value // phone. as access to all HTMLInputElement props/methods
+
+
+typeof
+// checks is type is number, object, string, etc
+// object = Custom objects like Person()
+
+person instanceof Person
+// boolean ==> checks if this object is an instance of Person
+
+
+
+Decorators:
+
+@Component  // This a decorator
+class Foo {
+
+}
+
+
+Modules:
+Shapes.cs:
+class Circle {
+
+}
+
+export class Square { // export makes this visible to others class in app.
+
+}
+
+
+You create references to these shapes in your implementation like so:
+
+index.ts:
+import { methodName } from "./Shapes"
+
+// and then as normal instantiate
+let myShape = new Circle();
+
+Default exports are used when we have a single object which will always be exported.
+so we annotate like so:
+export default Foo {}
+
+And then we use like so:
+import Foo from "./location"
+
+
+
+Reminder-app with Typescript and React!
+1) npx to create our app.
+2) Add bootstrap for funky UI components
+....
+way more steps (link up to test data online, get/list info on site, add, remove, html things, very nice app):
+Look at reminders app:C:\Users\NicklasP\Desktop\Github\interview-prep\5-typescript\reminders-app
+

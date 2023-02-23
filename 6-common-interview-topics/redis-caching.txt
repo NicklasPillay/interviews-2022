@@ -1,0 +1,68 @@
+What is distrubuted caching?
+- A mechanism to improve effectiveness in an application (Speed up responses)
+- The cache is a representation of a particular set of data which can be served faster
+- So user request to server, rather than going all the way to the DB, create an interim to serve data before that.
+
+
+Why/When do you want to use to?
+1) Minimize network calls
+2) Avoid recomputations (average age)
+3) Reduce DB load (lock contention)
+
+
+When not to use it? Any limitations?
+- Do not store everything in cache
+Cache usually uses an SSD - which is expensive as opposed to database 
+The more stuff in the cache, the longer the search times, so at that point it loses it value
+
+
+Cache just needs fresher data that we can serve to future requests
+We need to predict what info will be needed
+
+1. When do I need to make an entry in cache, or remove something?
+Cache Policy
+- Least Recently Used - LRU - (Stack)
+- Sliding Window
+
+
+Problems:
+
+Trashing
+Constantly inputting and removing from the cache, than using it.
+It's hurting your performance more than helping you.
+
+eg. If you only have a size of 1 "unit" - if you have 2 users.
+If User A makes a request, goes to cache, not there, go to DB, gets it, caches it.
+Then User B tries this, same thing as above, drop (1 unit) what's cache, add it.
+
+
+Data Consistency.
+- If you have 2 caches near the user, essentially in memory, if one machine fails, they are no longer in sync/consistent
+- The above is really fast, but risky.
+- You can alternatively use Distributed Global caches - which is closer to the DB, but feeds out to several other caches.
+This is what Redis is - persistance cache like a storage. 
+few boxes store data in memory, when a request comes, they query and get result.
+If not found, the global cache queries the DB
+- So now what happens if S2 fail? Nothing, since everyone is ultimately querying the global cache.
+
+			S1 --
+		/		  \
+ User--		  	 Global Cache  --  DB
+		\		  /
+			S2 --
+			
+- Slightly slower, but still fast - but very resilent and accurate.
+
+
+
+Write-through
+- Update cache with user request
+- persist back to DB 
+- Try to do in bulk to optimize (depending on your system and data critical info?)
+
+Write-back
+- Go to DB first, update, then update the cache
+- expensive
+
+
+Great video: https://www.youtube.com/watch?v=U3RkDLtS7uY&ab_channel=GauravSen

@@ -1,0 +1,13 @@
+Design Pattern which apps are broken down into smaller more focused and modular components/apps.
+They communicate with each other to achieve a consolidated goal, but each targets an area to execute.
+
+Easier to develop and test.
+As well as maintain and deploy.
+Easier to scale individual microservice.
+
+Docker containers make it easier to use these.
+How?
+Via virtualization Docker spins up an instance, 
+on top of the hardware and host O/S which can host any defined O/S, and apps.
+
+Provides SOC and cleaner workspace.
